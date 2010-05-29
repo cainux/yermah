@@ -1,0 +1,39 @@
+<html>
+  <head>
+    <style type="text/css">
+      body, h1, p, a, div { margin: 0; padding: 0; }
+      
+      body  { font-family: 'Lucida Grande', Verdana, Arial, Helvetica, sans-serif; }
+      h1    { font-size: 14px; }
+      p     { font-size: 12px; }
+      a     { font-size: 11px; }
+      #icon { float: left; height: 100%; margin-right: 5px; }
+    </style>
+    <script>
+      var bg = chrome.extension.getBackgroundPage();
+      var ym = bg.ym;
+      var message = ym.flash[location.hash];
+      delete ym.flash[location.hash];
+      
+      var init = function() {
+        var image = document.getElementById("image");
+        var title = document.getElementById("title");
+        var body = document.getElementById("body");
+        var viewLink = document.getElementById("viewLink");
+        
+        image.src = message.sender_mugshot;
+        title.innerText = message.sender_fullName;
+        body.innerText = message.body.plain;
+        viewLink.href = message.web_url;
+      }
+    </script>
+  </head>
+  <body onload="init()">
+    <div id="icon">
+      <img id="image" />
+    </div>
+    <h1 id="title"></h1>
+    <p id="body"></p>
+    <a id="viewLink" href="#" target="top">view</a>
+  </body>
+</html>
