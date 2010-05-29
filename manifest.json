@@ -3,14 +3,11 @@
   "version": "0.1",
   "description": "Very basic Yammer notifier",
   "browser_action": {
-    "default_icon": "img/yermah-19.png",
-    "popup": "popup.html"
+    "default_icon": "img/yermah-19.png"
   },
   "background_page": "background.html",
   "permissions": [
-    "tabs",
-    "http://*/*",
-    "https://*/*"
+    "tabs", "https://www.yammer.com/"
   ],
   "icons": {
     "19": "img/yermah-19.png",
