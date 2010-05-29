@@ -3,20 +3,20 @@
     <script type="text/javascript" src="lib/background.js"></script>
     <script>
       // Init
-      YM = new Yermah();
-      YM.debugMode = true;
+      ym = new Yermah();
+      //ym.debugMode = true;
       
       // Read values from localStorage
       if(localStorage.lastMessageId) {
-        YM.newestMessageId = localStorage.lastMessageId;
+        ym.newestMessageId = localStorage.lastMessageId;
       }
       
       chrome.browserAction.onClicked.addListener(function(tab) {
-        YM.handleBrowserAction();
+        ym.handleBrowserAction();
       });
       
       // Oscar Mike
-      //YM.go();
+      ym.go();
     </script>
   </head>
 </html>
