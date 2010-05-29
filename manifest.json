@@ -8,6 +8,7 @@
   "background_page": "background.html",
   "permissions": [
     "tabs",
+    "notifications",
     "https://www.yammer.com/"
   ],
   "icons": {
