@@ -6,12 +6,17 @@
       YM = new Yermah();
       YM.debugMode = true;
       
+      // Read values from localStorage
+      if(localStorage.lastMessageId) {
+        YM.newestMessageId = localStorage.lastMessageId;
+      }
+      
       chrome.browserAction.onClicked.addListener(function(tab) {
         YM.handleBrowserAction();
       });
       
       // Oscar Mike
-      YM.go();
+      //YM.go();
     </script>
   </head>
 </html>
