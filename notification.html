@@ -5,14 +5,19 @@
       
       body  { font-family: 'Lucida Grande', Verdana, Arial, Helvetica, sans-serif; }
       h1    { font-size: 14px; }
-      p     { font-size: 12px; }
-      a     { font-size: 11px; }
-      #icon { float: left; height: 100%; margin-right: 5px; }
+      p     { font-size: 12px; margin: 5px 0; }
+      a     { font-size: 11px; text-decoration: none; }
+      a:visited { color: blue; }
+      
+      .message  { padding: 3px 6px; }
     </style>
     <script>
       var bg = chrome.extension.getBackgroundPage();
       var ym = bg.ym;
       var message = ym.flash[location.hash];
+      var notification = message.notification;
+      var timeoutId = 0;
+      
       delete ym.flash[location.hash];
       
       var init = function() {
@@ -25,15 +30,18 @@
         title.innerText = message.sender_fullName;
         body.innerText = message.body.plain;
         viewLink.href = message.web_url;
+        
+        timeoutId = setTimeout(function() { notification.cancel(); }, ym.notificationTimeout);
+        document.body.addEventListener("mouseover", function() { clearTimeout(timeoutId); }, false);
       }
     </script>
   </head>
   <body onload="init()">
-    <div id="icon">
-      <img id="image" />
+    <img id="image" align="right" />
+    <div class="message">
+      <h1 id="title"></h1>
+      <p id="body"></p>
+      <a id="viewLink" href="#" target="_top">view message</a>
     </div>
-    <h1 id="title"></h1>
-    <p id="body"></p>
-    <a id="viewLink" href="#" target="top">view</a>
   </body>
 </html>
