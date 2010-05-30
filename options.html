@@ -4,7 +4,36 @@
       Yermah Options
     </title>
     <style type="text/css">
-
+      body, select, button {
+        font-family: "Verdana";
+        font-size: 13px;
+        line-height: 20px;
+      }
+    
+      #container {
+        /* Set the width and center it */
+        width: 450px;
+        margin: 0 auto;
+      }
+      
+      fieldset {
+        padding-top: 10px;
+      }
+      
+      ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      
+      ul ul {
+        padding: 0 20px;
+        margin-bottom: 10px;
+      }
+      
+      .buttons {
+        text-align: right;
+      }
     </style>
     
     <script type="text/javascript">
@@ -76,44 +105,72 @@
     </script>
   </head>
   <body onload="init()">
-    <h1>Yermah Options</h1>
-    <ul>
-      <li>
-        <label for="selPollingInterval">Check Yammer for new messages every</label>
-        <select id="selPollingInterval">
-          <option value="1">minute</option>
-          <option value="2">2 minutes</option>
-          <option value="5">5 minutes</option>
-        </select>
-      </li>
-      <li>
-        Desktop Notifications
+    <div id="container">
+      <fieldset>
+        <legend><h1>Yermah Options</h1></legend>
         <ul>
           <li>
-            <label for="chkEnableNotifications">Enable</label>
-            <input id="chkEnableNotifications" type="checkbox" />
+            <h2>Polling:</h2>
+            <ul>
+              <li>
+                <label for="selPollingInterval">Check Yammer for new messages every</label>
+                <select id="selPollingInterval">
+                  <option value="1">minute</option>
+                  <option value="2">2 minutes</option>
+                  <option value="5">5 minutes</option>
+                </select>
+              </li>
+            </ul>
           </li>
           <li>
-            <label for="selNotificationLifetime">Display notifications </label>
-            <select id="selNotificationLifetime">
-              <option value="5">for 5 seconds</option>
-              <option value="10">for 10 seconds</option>
-              <option value="20">for 20 seconds</option>
-              <option value="0">until I dismiss them</option>
-            </select>
-          </li>
-          <li>
-            <label for="selMaxNotifications">Maximum number of notifications to show</label>
-            <select id="selMaxNotifications">
-              <option value="3">3</option>
-              <option value="5">5</option>
-              <option value="7">7</option>
-            </select>
+            <h2>Desktop Notifications:</h2>
+            <ul>
+              <li>
+                <label for="chkEnableNotifications">Enable</label>
+                <input id="chkEnableNotifications" type="checkbox" />
+              </li>
+              <li>
+                <label for="selNotificationLifetime">Display notifications </label>
+                <select id="selNotificationLifetime">
+                  <option value="5">for 5 seconds</option>
+                  <option value="10">for 10 seconds</option>
+                  <option value="20">for 20 seconds</option>
+                  <option value="0">until I dismiss them</option>
+                </select>
+              </li>
+              <li>
+                <label for="selMaxNotifications">Maximum number of notifications to show:</label>
+                <select id="selMaxNotifications">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                  <option value="16">16</option>
+                  <option value="17">17</option>
+                  <option value="18">18</option>
+                  <option value="19">19</option>
+                  <option value="20">20</option>
+                </select>
+              </li>
+            </ul>
           </li>
         </ul>
-      </li>
-    </ul>
-    <button onclick="save()">Save</button>
-    <button onclick="reset()">Reset</button>
+        <div class="buttons">
+          <button onclick="save()">Apply</button>
+          <button onclick="reset()">Reset</button>
+        </div>        
+      </fieldset>
+    </div>
   </body>
 </html>

@@ -29,7 +29,9 @@
         image.src = message.sender_mugshot;
         title.innerText = message.sender_fullName;
         body.innerText = message.body.plain;
-        viewLink.href = message.web_url;
+        viewLink.href = message.targetUrl;
+        viewLink.target = "_" + message.id;
+        viewLink.innerText = "view " + message.urlType;
         
         if(ym.notificationTimeout > 0) {
           timeoutId = setTimeout(function() { notification.cancel(); }, ym.notificationTimeout);
@@ -43,7 +45,7 @@
     <div class="message">
       <h1 id="title"></h1>
       <p id="body"></p>
-      <a id="viewLink" href="#" target="_top">view message</a>
+      <a id="viewLink"></a>
     </div>
   </body>
 </html>
