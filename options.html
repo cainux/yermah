@@ -1,0 +1,119 @@
+<html>
+  <head>
+    <title>
+      Yermah Options
+    </title>
+    <style type="text/css">
+
+    </style>
+    
+    <script type="text/javascript">
+      var bg = chrome.extension.getBackgroundPage();
+      var ym = bg.ym;
+    
+      var options = {
+        pollingInterval             : 1,
+        desktopNotificationsEnabled : true,
+        notificationLifetime        : 10,
+        maxNotifications            : 3
+      }
+
+      var selPollingInterval;      
+      var chkEnableNotifications;
+      var selNotificationLifetime;
+      var selMaxNotifications;
+    
+      var selectValue = function(select, value) {
+        for(var i = 0, option; option = select.children[i]; i++) {
+          if(option.value == value) {
+            option.selected = true;
+            break;
+          }
+        }
+      }
+      
+      var getSelectedValue = function(select) {
+        return select.children[select.selectedIndex].value;
+      }
+      
+      var init = function() {
+        selPollingInterval = document.getElementById("selPollingInterval");
+        chkEnableNotifications = document.getElementById("chkEnableNotifications");
+        selNotificationLifetime = document.getElementById("selNotificationLifetime");
+        selMaxNotifications = document.getElementById("selMaxNotifications");
+        
+        var storedOptions = localStorage["yermahOptions"];
+        
+        if(storedOptions) {
+          options = JSON.parse(storedOptions);
+        }
+        
+        selectValue(selPollingInterval, options.pollingInterval);
+        chkEnableNotifications.checked = options.desktopNotificationsEnabled;
+        selectValue(selNotificationLifetime, options.notificationLifetime);
+        selectValue(selMaxNotifications, options.maxNotifications);
+      }
+      
+      var save = function() {
+        ym.log("Saving");
+        options.pollingInterval = getSelectedValue(selPollingInterval);
+        options.desktopNotificationsEnabled = chkEnableNotifications.checked;
+        options.notificationLifetime = getSelectedValue(selNotificationLifetime);
+        options.maxNotifications = getSelectedValue(selMaxNotifications);
+        
+        localStorage["yermahOptions"] = JSON.stringify(options);
+        ym.applyOptions(options);
+      }
+      
+      var reset = function() {
+        ym.log("Resetting");
+        selectValue(selPollingInterval, 1);
+        chkEnableNotifications.checked = true;
+        selectValue(selNotificationLifetime, 5);
+        selectValue(selMaxNotifications, 3);
+        save();
+      }
+    </script>
+  </head>
+  <body onload="init()">
+    <h1>Yermah Options</h1>
+    <ul>
+      <li>
+        <label for="selPollingInterval">Check Yammer for new messages every</label>
+        <select id="selPollingInterval">
+          <option value="1">minute</option>
+          <option value="2">2 minutes</option>
+          <option value="5">5 minutes</option>
+        </select>
+      </li>
+      <li>
+        Desktop Notifications
+        <ul>
+          <li>
+            <label for="chkEnableNotifications">Enable</label>
+            <input id="chkEnableNotifications" type="checkbox" />
+          </li>
+          <li>
+            <label for="selNotificationLifetime">Display notifications </label>
+            <select id="selNotificationLifetime">
+              <option value="5">for 5 seconds</option>
+              <option value="10">for 10 seconds</option>
+              <option value="20">for 20 seconds</option>
+              <option value="0">until I dismiss them</option>
+            </select>
+          </li>
+          <li>
+            <label for="selMaxNotifications">Maximum number of notifications to show</label>
+            <select id="selMaxNotifications">
+              <option value="3">3</option>
+              <option value="5">5</option>
+              <option value="7">7</option>
+            </select>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <button onclick="save()">Save</button>
+    <button onclick="reset()">Reset</button>
+  </body>
+</html>
