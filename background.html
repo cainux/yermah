@@ -4,7 +4,6 @@
     <script type="text/javascript">
       // Init
       ym = new Yermah();
-      ym.debugMode = true;
 
       // Read values from localStorage
       if(localStorage.lastMessageId) {
@@ -17,13 +16,13 @@
         ym.log("Options loaded");
       }
     
+      // Clicking on the icon takes you to Yammer
       chrome.browserAction.onClicked.addListener(function(tab) {
         ym.handleBrowserAction();
       });
 
       // Oscar Mike
-      // ym.go();
-      ym.checkForNewMessages(47079578);
+      ym.go();
     </script>
   </head>
 </html>
