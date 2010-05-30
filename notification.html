@@ -11,7 +11,7 @@
       
       .message  { padding: 3px 6px; }
     </style>
-    <script>
+    <script type="text/javascript">
       var bg = chrome.extension.getBackgroundPage();
       var ym = bg.ym;
       var message = ym.flash[location.hash];
@@ -31,8 +31,10 @@
         body.innerText = message.body.plain;
         viewLink.href = message.web_url;
         
-        timeoutId = setTimeout(function() { notification.cancel(); }, ym.notificationTimeout);
-        document.body.addEventListener("mouseover", function() { clearTimeout(timeoutId); }, false);
+        if(ym.notificationTimeout > 0) {
+          timeoutId = setTimeout(function() { notification.cancel(); }, ym.notificationTimeout);
+          document.body.addEventListener("mouseover", function() { clearTimeout(timeoutId); }, false);
+        }
       }
     </script>
   </head>

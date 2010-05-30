@@ -1,21 +1,29 @@
 <html>
   <head>
     <script type="text/javascript" src="lib/background.js"></script>
-    <script>
+    <script type="text/javascript">
       // Init
       ym = new Yermah();
+      ym.debugMode = true;
 
       // Read values from localStorage
       if(localStorage.lastMessageId) {
         ym.newestMessageId = localStorage.lastMessageId;
       }
       
+      if(localStorage.yermahOptions) {
+        options = JSON.parse(localStorage.yermahOptions);
+        ym.applyOptions(options);
+        ym.log("Options loaded");
+      }
+    
       chrome.browserAction.onClicked.addListener(function(tab) {
         ym.handleBrowserAction();
       });
-      
+
       // Oscar Mike
-      ym.go();
+      // ym.go();
+      ym.checkForNewMessages(47079578);
     </script>
   </head>
 </html>
