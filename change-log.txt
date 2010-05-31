@@ -1,3 +1,7 @@
+2010-05-31 - 0.2.3
+- Now uses Yammer's "messages/following" call to get new messages as it includes messages in groups
+- URLs in the message body are now linkified. Uses Ben 'Cowboy' Alman's linkify()
+
 2010-05-31 - 0.2.2
 - Added this changelog
 - Fixed a bug causing the badge to stay grey even though it managed to successfully check for new messages
