@@ -1,0 +1,3 @@
+2010-05-31 - 0.2.2
+- Added this changelog
+- Fixed a bug causing the badge to stay grey even though it managed to successfully check for new messages
