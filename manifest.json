@@ -1,10 +1,11 @@
 {
   "name": "Yermah",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Receive notifications when new messages arrive on Yammer.",
   "browser_action": {
     "default_icon": "img/yammer-19.png"
   },
+  "minimum_chrome_version": "5.0.0.0",
   "background_page": "background.html",
   "options_page" : "options.html",
   "permissions": [
