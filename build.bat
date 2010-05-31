@@ -4,6 +4,7 @@ copy *.html build
 copy manifest.json build
 copy LICENSE build
 xcopy lib build\lib /i
+xcopy lib\dependencies build\lib\dependencies /i
 xcopy img build\img /i
 cd build
 7z a -tzip "yermah.zip" -r
