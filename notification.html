@@ -37,6 +37,8 @@
           timeoutId = setTimeout(function() { notification.cancel(); }, ym.notificationTimeout);
           document.body.addEventListener("mouseover", function() { clearTimeout(timeoutId); }, false);
         }
+        
+        viewLink.addEventListener("click", function() { ym.resetBadge(); });
       }
     </script>
   </head>
