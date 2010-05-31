@@ -6,11 +6,12 @@
       body  { font-family: 'Lucida Grande', Verdana, Arial, Helvetica, sans-serif; }
       h1    { font-size: 14px; }
       p     { font-size: 12px; margin: 5px 0; }
-      a     { font-size: 11px; text-decoration: none; }
+      a     { font-size: 12px; text-decoration: none; }
       a:visited { color: blue; }
       
       .message  { padding: 3px 6px; }
     </style>
+    <script type="text/javascript" src="lib/dependencies/ba-linkify.min.js"></script>
     <script type="text/javascript">
       var bg = chrome.extension.getBackgroundPage();
       var ym = bg.ym;
@@ -28,7 +29,12 @@
         
         image.src = message.sender_mugshot;
         title.innerText = message.sender_fullName;
-        body.innerText = message.body.plain;
+        body.innerHTML = linkify(message.body.plain, {
+          callback : function(text, href) {
+            return href ? '<a href="' + href + '" title="' + href + '" target="__' + message.id + '" onclick="ym.resetBadge()">' + text + '</a>' : text;
+          }
+        });
+        
         viewLink.href = message.targetUrl;
         viewLink.target = "_" + message.id;
         viewLink.innerText = "view " + message.urlType;
