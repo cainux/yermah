@@ -43,11 +43,13 @@
       var options = {
         pollingInterval             : 1,
         desktopNotificationsEnabled : true,
+        includeOwnMessages          : false,
         notificationLifetime        : 10,
         maxNotifications            : 3
       }
 
-      var selPollingInterval;      
+      var selPollingInterval;
+      var chkIncludeOwnMessages;
       var chkEnableNotifications;
       var selNotificationLifetime;
       var selMaxNotifications;
@@ -67,6 +69,7 @@
       
       var init = function() {
         selPollingInterval = document.getElementById("selPollingInterval");
+        chkIncludeOwnMessages = document.getElementById("chkIncludeOwnMessages");
         chkEnableNotifications = document.getElementById("chkEnableNotifications");
         selNotificationLifetime = document.getElementById("selNotificationLifetime");
         selMaxNotifications = document.getElementById("selMaxNotifications");
@@ -78,6 +81,7 @@
         }
         
         selectValue(selPollingInterval, options.pollingInterval);
+        chkIncludeOwnMessages.checked = options.includeOwnMessages;
         chkEnableNotifications.checked = options.desktopNotificationsEnabled;
         selectValue(selNotificationLifetime, options.notificationLifetime);
         selectValue(selMaxNotifications, options.maxNotifications);
@@ -86,6 +90,7 @@
       var save = function() {
         ym.log("Saving");
         options.pollingInterval = getSelectedValue(selPollingInterval);
+        options.includeOwnMessages = chkIncludeOwnMessages.checked;
         options.desktopNotificationsEnabled = chkEnableNotifications.checked;
         options.notificationLifetime = getSelectedValue(selNotificationLifetime);
         options.maxNotifications = getSelectedValue(selMaxNotifications);
@@ -97,6 +102,7 @@
       var reset = function() {
         ym.log("Resetting");
         selectValue(selPollingInterval, 1);
+        chkIncludeOwnMessages.checked = false;
         chkEnableNotifications.checked = true;
         selectValue(selNotificationLifetime, 5);
         selectValue(selMaxNotifications, 3);
@@ -119,6 +125,10 @@
                   <option value="2">2 minutes</option>
                   <option value="5">5 minutes</option>
                 </select>
+              </li>
+              <li>
+                <label for="chkIncludeOwnMessages">Include own messages</label>
+                <input id="chkIncludeOwnMessages" type="checkbox" />
               </li>
             </ul>
           </li>
